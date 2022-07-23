@@ -794,18 +794,18 @@ install_v2ray() {
 			echo
 			exit 1
 		fi
-		mkdir -p /etc/v2ray/q1365528996/v2ray-123
-		cp -rf $(pwd)/* /etc/v2ray/q1365528996/v2ray-123
+		mkdir -p /etc/v2ray/233boy/v2ray
+		cp -rf $(pwd)/* /etc/v2ray/233boy/v2ray
 	else
-		git clone https://github.com/q1365528996/v2ray-123 /etc/v2ray/q1365528996/v2ray-123
+		git clone https://github.com/233boy/v2ray /etc/v2ray/233boy/v2ray
 	fi
 
 	[ -d /tmp/v2ray ] && rm -rf /tmp/v2ray
 	mkdir -p /tmp/v2ray
 
 	v2ray_tmp_file="/tmp/v2ray/v2ray.zip"
-	v2ray_ver="$(curl -s https://ghproxy.com/https://api.github.com/repos/v2ray/v2ray-core/releases/latest | grep 'tag_name' | cut -d\" -f4)"
-	v2ray_download_link="https://ghproxy.com/https://github.com/v2ray/v2ray-core/releases/download/v4.28.2/v2ray-linux-64.zip"
+	v2ray_ver="$(curl -s https://api.github.com/repos/v2ray/v2ray-core/releases/latest | grep 'tag_name' | cut -d\" -f4)"
+	v2ray_download_link="https://ghproxy.com/https://github.com/v2ray/v2ray-core/releases/download/$v2ray_ver/v2ray-linux-${v2ray_bit}.zip"
 
 	if ! wget --no-check-certificate -O "$v2ray_tmp_file" $v2ray_download_link; then
 		echo -e "
@@ -839,79 +839,79 @@ install_v2ray() {
 		if [[ $is_blocked_ad ]]; then
 			case $v2ray_transport_opt in
 			1)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/tcp_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/tcp_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			2)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/http_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/http_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			3)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/ws_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/ws_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			4)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/ws_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws_tls.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/ws_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws_tls.json"
 				;;
 			5 | 6 | 7 | 8)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/kcp_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/kcp_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			9)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/tcp_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/tcp_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			10)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/http_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/http_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			11)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/ws_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/ws_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			12 | 13 | 14 | 15)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/kcp_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/kcp_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			esac
 		else
 			case $v2ray_transport_opt in
 			1)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/tcp_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/tcp_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			2)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/http_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/http_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			3)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/ws_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/ws_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			4)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/ws_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws_tls.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/ws_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws_tls.json"
 				;;
 			5 | 6 | 7 | 8)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/kcp_ss.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/kcp_ss.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			9)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/tcp_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/tcp_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			10)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/http_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/http_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			11)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/ws_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/ws_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			12 | 13 | 14 | 15)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/kcp_ss_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/kcp_ss_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			esac
 		fi
@@ -919,79 +919,79 @@ install_v2ray() {
 		if [[ $is_blocked_ad ]]; then
 			case $v2ray_transport_opt in
 			1)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/tcp.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/tcp.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			2)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/http.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/http.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			3)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/ws.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/ws.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			4)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/ws.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws_tls.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/ws.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws_tls.json"
 				;;
 			5 | 6 | 7 | 8)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/kcp.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/kcp.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			9)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/sblocked_hosts/erver/tcp_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/sblocked_hosts/erver/tcp_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			10)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/http_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/http_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			11)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/ws_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/ws_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			12 | 13 | 14 | 15)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/blocked_hosts/server/kcp_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/blocked_hosts/server/kcp_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			esac
 		else
 			case $v2ray_transport_opt in
 			1)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/tcp.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/tcp.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			2)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/http.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/http.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			3)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/ws.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/ws.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			4)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/ws.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws_tls.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/ws.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws_tls.json"
 				;;
 			5 | 6 | 7 | 8)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/kcp.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/kcp.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			9)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/tcp_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/tcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/tcp_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/tcp.json"
 				;;
 			10)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/http_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/http.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/http_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/http.json"
 				;;
 			11)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/ws_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/ws.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/ws_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/ws.json"
 				;;
 			12 | 13 | 14 | 15)
-				v2ray_server_config_file="/etc/v2ray/q1365528996/v2ray-123/config/server/kcp_dynamic.json"
-				v2ray_client_config_file="/etc/v2ray/q1365528996/v2ray-123/config/client/kcp.json"
+				v2ray_server_config_file="/etc/v2ray/233boy/v2ray/config/server/kcp_dynamic.json"
+				v2ray_client_config_file="/etc/v2ray/233boy/v2ray/config/client/kcp.json"
 				;;
 			esac
 		fi
@@ -1081,8 +1081,8 @@ del_port() {
 config() {
 	cp -f $v2ray_server_config_file $v2ray_server_config
 	cp -f $v2ray_client_config_file $v2ray_client_config
-	cp -f /etc/v2ray/q1365528996/v2ray-123/config/backup.conf $backup
-	cp -f /etc/v2ray/q1365528996/v2ray-123/v2ray.sh /usr/local/bin/v2ray
+	cp -f /etc/v2ray/233boy/v2ray/config/backup.conf $backup
+	cp -f /etc/v2ray/233boy/v2ray/v2ray.sh /usr/local/bin/v2ray
 	chmod +x /usr/local/bin/v2ray
 
 	local multi_port="${v2ray_dynamic_port_start_input}-${v2ray_dynamic_port_end_input}"
@@ -1625,14 +1625,14 @@ get_qr_link() {
 
 }
 install() {
-	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/q1365528996/v2ray-123 ]]; then
+	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
 		echo
 		echo " 大佬...你已经安装 V2Ray 啦...无需重新安装"
 		echo
 		echo -e " $yellow输入 ${cyan}v2ray${none} $yellow即可管理 V2Ray${none}"
 		echo
 		exit 1
-	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/q1365528996/v2ray-123 ]]; then
+	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
 		echo
 		echo " 大佬... 如果你需要继续安装.. 请先卸载旧版本"
 		echo
@@ -1664,7 +1664,7 @@ install() {
 }
 uninstall() {
 
-	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/q1365528996/v2ray-123 ]]; then
+	if [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f $backup && -d /etc/v2ray/233boy/v2ray ]]; then
 		. $backup
 		while :; do
 			echo
@@ -1777,7 +1777,7 @@ uninstall() {
 			echo
 			echo "如果你觉得这个脚本有哪些地方不够好的话...请告诉我"
 			echo
-			echo "反馈问题: https://github.com/q1365528996/v2ray-123/issus"
+			echo "反馈问题: https://github.com/233boy/v2ray/issus"
 			echo
 
 		elif [[ $is_uninstall_v2ray ]]; then
@@ -1821,11 +1821,11 @@ uninstall() {
 			echo
 			echo "如果你觉得这个脚本有哪些地方不够好的话...请告诉我"
 			echo
-			echo "反馈问题: https://github.com/q1365528996/v2ray-123/issus"
+			echo "反馈问题: https://github.com/233boy/v2ray/issus"
 			echo
 
 		fi
-	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/q1365528996/v2ray-123 ]]; then
+	elif [[ -f /usr/bin/v2ray/v2ray && -f /etc/v2ray/config.json ]] && [[ -f /etc/v2ray/233blog_v2ray_backup.txt && -d /etc/v2ray/233boy/v2ray ]]; then
 		backup="/etc/v2ray/233blog_v2ray_backup.txt"
 		while :; do
 			echo
@@ -1946,7 +1946,7 @@ uninstall() {
 			echo
 			echo "如果你觉得这个脚本有哪些地方不够好的话...请告诉我"
 			echo
-			echo "反馈问题: https://github.com/q1365528996/v2ray-123/issus"
+			echo "反馈问题: https://github.com/233boy/v2ray/issus"
 			echo
 
 		elif [[ $is_uninstall_v2ray ]]; then
@@ -1995,7 +1995,7 @@ uninstall() {
 			echo
 			echo "如果你觉得这个脚本有哪些地方不够好的话...请告诉我"
 			echo
-			echo "反馈问题: https://github.com/q1365528996/v2ray-123/issus"
+			echo "反馈问题: https://github.com/233boy/v2ray/issus"
 			echo
 
 		fi
